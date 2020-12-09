@@ -42,7 +42,7 @@ install_lua() {
         cd $(untar_path $install_type $version $download_dir) || exit 1
 
         # Target is OS-specific
-        target=$(get_target)
+        target=linux-readline
 
         # Build Lua
         if version_5x_or_greater $version; then
@@ -95,17 +95,6 @@ untar_path() {
     fi
 
     echo "$tmp_download_dir/$dir_name"
-}
-
-get_target() {
-    os=$(uname -s)
-
-    # If on OSX (Darwin) then the target is macosx
-    if [ $os = "Darwin" ]; then
-        echo "macosx"
-    else # Otherwise we assume Linux
-        echo "linux"
-    fi
 }
 
 version_5x_or_greater() {
